@@ -1,0 +1,87 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #111;
+  color: #eee;
+  text-align: center;
+  padding: 2rem;
+}
+
+#video-wrapper {
+  position: relative;      /* anchor point for the canvas below */
+  width: 640px;
+  height: 480px;
+  margin: 1.5rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+/* video and both canvases sit in the SAME spot, stacked via absolute positioning */
+#webcam, #draw-canvas, #overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 480px;
+}
+
+#webcam {
+  transform: scaleX(-1); /* mirror it, like a selfie camera */
+}
+
+#draw-canvas, #overlay {
+  transform: scaleX(-1); /* mirror the drawing too, so it lines up with the mirrored video */
+}
+
+#mode-buttons {
+  margin-bottom: 0.5rem;
+}
+
+.mode-btn {
+  background: #333;
+  opacity: 0.7;
+}
+
+.mode-btn.active {
+  background: #4f9dff;
+  opacity: 1;
+}
+
+#controls {
+  margin-top: 1rem;
+}
+
+#media-section {
+  margin-top: 1.5rem;
+}
+
+#media-section.hidden {
+  display: none;
+}
+
+#media-section video {
+  border-radius: 8px;
+}
+
+#media-status {
+  color: #4f9dff;
+  font-weight: bold;
+}
+
+button {
+  background: #4f9dff;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #3a86ff;
+}
+
+#status {
+  color: #aaa;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Hand Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- These load TensorFlow.js itself, plus the pre-trained hand model -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/hand-pose-detection"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <h1>✋ AI Hand Control Demo</h1>
+  <p id="status">Click "Start Camera" to begin</p>
+
+  <!-- Mode switcher: same tracking, different behavior depending on which is active -->
+  <div id="mode-buttons">
+    <button id="mode-draw-btn" class="mode-btn active">🎨 Draw Mode</button>
+    <button id="mode-media-btn" class="mode-btn">🎬 Media Control Mode</button>
+  </div>
+
+  <div id="video-wrapper">
+    <!-- The webcam feed plays here -->
+    <video id="webcam" autoplay playsinline></video>
+    <!-- Persistent drawing layer: strokes stay here until cleared -->
+    <canvas id="draw-canvas"></canvas>
+    <!-- Skeleton dots/lines redraw every frame on top of everything -->
+    <canvas id="overlay"></canvas>
+  </div>
+
+  <div id="controls">
+    <button id="start-btn">Start Camera</button>
+    <button id="track-btn" disabled>Start Tracking</button>
+    <button id="clear-btn">Clear Drawing</button>
+  </div>
+
+  <!-- Only shown in Media Control Mode -->
+  <div id="media-section" class="hidden">
+    <p>Make a ✊ fist to Play/Pause. Raise your hand higher/lower to change volume.</p>
+    <video id="demo-video" width="360" src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" loop></video>
+    <p id="media-status">Volume: 100%</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
